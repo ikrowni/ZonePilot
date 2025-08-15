@@ -40,8 +40,9 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
-        <meta-data android:name="com.google.android.geo.API_KEY"
-                   android:value="AIzaSyDfGch_FOWtDxRgLhzqEGHl10-5Vr0nEAk"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
 
         <meta-data
             android:name="flutterEmbedding"

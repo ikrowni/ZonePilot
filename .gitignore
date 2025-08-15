@@ -1,4 +1,4 @@
-# Flutter / Dart
+# Flutter & Dart
 .dart_tool/
 .packages
 .pub-cache/
@@ -6,30 +6,68 @@
 build/
 flutter_export_environment.sh
 
+# Generated plugin files
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Logs
+*.log
+
 # Android
 android/.gradle/
+android/captures/
 android/local.properties
 android/key.properties
-*.jks
+
 *.keystore
+*.jks
+
+# Hide API keys & secrets
+gradle.properties
+android/gradle.properties
+
+# Gradle
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IntelliJ / Android Studio
+*.iml
+.idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/assetWizardSettings.xml
+.idea/navEditor.xml
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
 
 # iOS
-ios/Pods/
-ios/.symlinks/
 ios/Flutter/Flutter.framework
 ios/Flutter/App.framework
 ios/Flutter/Generated.xcconfig
 ios/Flutter/ephemeral/
+ios/Pods/
+ios/.symlinks/
 
-# Web / Desktop
+# Web / Desktop builds
 web/.dart_tool/
 linux/flutter/ephemeral/
 macos/Flutter/ephemeral/
 windows/flutter/ephemeral/
 
-# IDE / OS
-.vscode/
-.idea/
-*.iml
-.DS_Store
-Thumbs.db
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
