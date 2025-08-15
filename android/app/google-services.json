@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "275166731678",
+    "project_id": "zonepilot-4f637",
+    "storage_bucket": "zonepilot-4f637.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275166731678:android:d302de56d85576e28d8a8f",
+        "android_client_info": {
+          "package_name": "com.example.zone_pilot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275166731678-6j6dveveo36l9chbkoek1mt1o1e2q8qb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoh03OPHtmRkGUboZBGDoaLHtJqvCAa8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275166731678-6j6dveveo36l9chbkoek1mt1o1e2q8qb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "275166731678-73fvos0ook66lmp20dq3tucvkiirmald.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gigDriverAssistant"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">zone_pilot</string>
+    <string name="accessibility_service_description">ZonePilot needs this service to read job offers and automate tasks in driver apps.</string>
+</resources>
