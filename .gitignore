@@ -19,6 +19,7 @@ android/captures/
 android/local.properties
 android/key.properties
 android/lib/firebase_options.dart
+lib/firebase_options.dart
 *.keystore
 *.jks
 
