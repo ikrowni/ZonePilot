@@ -1,4 +1,4 @@
-# zone_pilot
+# ZonePilot
 
 A new Flutter project.
 
