@@ -1,6 +1,7 @@
 import 'package:external_app_launcher/external_app_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_tts/flutter_tts.dart'; // Import TTS
 import '../models/service_model.dart';
 import '../screens/drive_screen.dart';
 import '../screens/history_screen.dart';
@@ -15,7 +16,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   bool _isOnline = false;
-  static const platform = MethodChannel('com.zonepilot/accessibility');
+  // Define the communication channel and TTS plugin
+  static const platform = MethodChannel('com.example.zone_pilot/accessibility_service');
+  final FlutterTts flutterTts = FlutterTts();
 
   final List<Service> _services = [
     Service(
@@ -39,30 +42,34 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  // --- THIS IS THE UPDATED GO/STOP LOGIC ---
   void _toggleOnlineStatus() async {
-    // First, toggle the state of our button so the UI feels responsive
-    setState(() {
-      _isOnline = !_isOnline;
-    });
-
-    if (_isOnline) {
-      // GO ONLINE LOGIC (unchanged)
-      for (final service in _services) {
-        if (service.isEnabled) {
-          await LaunchApp.openApp(androidPackageName: service.androidPackageName);
-        }
+    if (!_isOnline) {
+      // GO ONLINE SEQUENCE
+      setState(() => _isOnline = true);
+      await LaunchApp.openApp(androidPackageName: 'com.ubercab.driver');
+      await Future.delayed(const Duration(seconds: 2));
+      try {
+        await platform.invokeMethod('goOnline');
+        await flutterTts.speak("Uber is online");
+      } on PlatformException catch (e) {
+        print("Failed to go online: '${e.message}'.");
+        await flutterTts.speak("Error going online");
+        if (mounted) setState(() => _isOnline = false); // Revert state on error
       }
     } else {
-      // GO OFFLINE LOGIC (UPDATED)
+      // GO OFFLINE SEQUENCE
+      setState(() => _isOnline = false);
+      // Bring Uber to the front first to ensure the service can see it
+      await LaunchApp.openApp(androidPackageName: 'com.ubercab.driver');
+      await Future.delayed(const Duration(seconds: 2));
       try {
-        // 1. Bring the Uber app to the foreground.
-        await LaunchApp.openApp(androidPackageName: 'com.ubercab.driver');
-        // 2. Give the app a moment to launch and settle.
-        await Future.delayed(const Duration(seconds: 2));
-        // 3. Now, send the command to the service, which is looking at the correct screen.
         await platform.invokeMethod('goOffline');
+        await flutterTts.speak("Uber is offline");
       } on PlatformException catch (e) {
         print("Failed to go offline: '${e.message}'.");
+        await flutterTts.speak("Error going offline");
+        if (mounted) setState(() => _isOnline = true); // Revert state on error
       }
     }
   }
@@ -93,6 +100,7 @@ class _MainScreenState extends State<MainScreen> {
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 24,
+              color: Colors.white,
             ),
           ),
         ),
